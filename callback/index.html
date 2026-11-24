@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Connecting… · WaresClipper</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+  <h2>Returning to WaresClipper…</h2>
+  <p id="msg" class="muted">Sending the TikTok sign-in result to the WaresClipper app running on this computer.</p>
+  <p><a id="go" href="#">Continue to WaresClipper</a></p>
+  <p class="muted" style="font-size:14px">This page does not store or send the sign-in code anywhere except to 127.0.0.1 (your own computer). WaresClipper must be open for this to work.</p>
+</main>
+<script>
+  // TikTok redirects here (https is required for web redirect URIs) with
+  // ?code=...&state=... ; forward them unchanged to the local app.
+  var target = "http://127.0.0.1:8765/tiktok/callback/" + window.location.search;
+  document.getElementById("go").href = target;
+  if (window.location.search) window.location.replace(target);
+  else document.getElementById("msg").textContent = "Nothing to forward: open this page from the TikTok sign-in.";
+</script>
+</body>
+</html>
